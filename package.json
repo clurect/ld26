@@ -1,28 +1,27 @@
 {
-    "name": "Mini Mal",
-	"private": true,
-	"author": "Stephen Wright <mario.luigi.star@gmail.com>",
-	"description": "",
-	"contributors": [
-		{
-			"name": "Stephen Wright",
-			"email": "mario.luigi.star@gmail.com"
-		},
+    "name": "mini-mal",
+    "private": true,
+    "author": "Stephen Wright <mario.luigi.star@gmail.com>",
+    "description": "",
+    "contributors": [
+        {
+            "name": "Stephen Wright",
+            "email": "mario.luigi.star@gmail.com"
+        },
         {
             "name": "Pysis868"       
         }
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/clurect/ld26.git"
-	},
-	"keywords": [
-		"game",
-		"platformer"
-	],
-	"devDependencies": {
-		"grunt": "~0.4.1",
-		"grunt-contrib-jshint": "~0.4.3",
-		
-	}
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/clurect/ld26.git"
+    },
+    "keywords": [
+        "game",
+        "platformer"
+    ],
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-contrib-jshint": "~0.4.3"
+    }
 }
