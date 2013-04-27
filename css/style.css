@@ -6,6 +6,10 @@
     width: 200px;
 }
 
+#myCanvas {
+    border: 1px solid black;
+}
+
 #middle {
     border: 1px solid black;
     width:95%;
