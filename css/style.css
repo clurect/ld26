@@ -1,0 +1,135 @@
+.ui-dialog-titlebar {
+    height:20px;
+}
+.ui-dialog {
+    height:400px;
+    width: 200px;
+}
+
+#middle {
+    border: 1px solid black;
+    width:95%;
+    height:90%;
+    margin: 0 auto;
+}
+label {
+    display: inline-block;
+    width: 5em;
+}
+.ui-menu:after {
+    content:".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+    z-index:100
+}
+.ui-menu .ui-menu-item {
+    display: inline-block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+body {
+    -webkit-font-smoothing: antialiased;
+    font: normal 15px/1.5"Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #232525;
+    padding-top:0px;
+}
+#slides {
+    width:320px;
+    height:200px;
+    padding:20px;
+    display: none;
+}
+#slides .slidesjs-navigation {
+    margin-top:3px;
+}
+#slides .slidesjs-previous {
+    margin-right: 5px;
+    float: left;
+}
+#slides .slidesjs-next {
+    margin-right: 5px;
+    float: left;
+}
+.slidesjs-pagination {
+    margin: 6px 0 0;
+    float: right;
+    list-style: none;
+}
+.slidesjs-pagination li {
+    float: left;
+    margin: 0 1px;
+}
+.slidesjs-pagination li a {
+    display: block;
+    width: 13px;
+    height: 0;
+    padding-top: 13px;
+    background-image: url("pagination.png");
+    background-position: 0 0;
+    float: left;
+    overflow: hidden;
+}
+.slidesjs-pagination li a.active, .slidesjs-pagination li a:hover.active {
+    background-position: 0 -13px
+}
+.slidesjs-pagination li a:hover {
+    background-position: 0 -26px
+}
+#slides a:link, #slides a:visited {
+    color: #333
+}
+#slides a:hover, #slides a:active {
+    color: #9e2020
+}
+.navbar {
+    overflow: hidden
+}
+#tabs {
+    background: transparent;
+    border: none;
+}
+#tabs .ui-widget-header {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #c0c0c0;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+#tabs .ui-tabs-nav .ui-state-default {
+    background: transparent;
+    border: none;
+    text-align: center;
+}
+#tabs .ui-tabs-nav .ui-state-default li {
+    display: inline-block;
+    float: none;
+    top: 0px;
+    margin: 0em;
+}
+#tabs .ui-tabs-nav .ui-state-active li {
+    display: inline-block;
+    float: none;
+    top: 0px;
+    margin: 0em;
+}
+#tabs .ui-tabs-nav .ui-state-active {
+    background: transparent url("http://keith-wood.name/img/uiTabsArrow.png") no-repeat bottom center;
+    border: none;
+    text-align: center;
+}
+#tabs .ui-tabs-nav .ui-state-default a {
+    color: #c0c0c0;
+}
+#tabs .ui-tabs-nav .ui-state-active a {
+    color: #459e00;
+}
+#around_slides {
+    width:320px;
+    height:100px;
+}
