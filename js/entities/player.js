@@ -1,21 +1,24 @@
-define(function() {
+define(function () {
+    "use strict";
+
     function Player() {
-        var color = "#00A";
-        var state = this.state = 'falling';
-        var x = this.x = 220;
-        var y = this.y = 270;
-        var dx = 0;
-        var dy = 0;
-        var jumpHeight = this.jumpHeight = 100;
-        var jumpOrigin = this.jumpOrigin = 0;
-        var width = 32;
-        var height = this.height = 32;
-        this.draw = function(canvas) {
+        var color = "#00A",
+            width = 32,
+            height = this.height = 32;
+
+        this.state = "falling";
+        this.x = 220;
+        this.y = 270;
+        this.jumpHeight = 100;
+        this.jumpOrigin = 0;
+
+        this.draw = function (canvas) {
             canvas.fillStyle = color;
 
             canvas.fillRect(this.x, this.y, width, height);
         };
-        this.update = function(keys) {};
+
+        this.update = function (/*keys*/) {};
     }
 
     return Player;
