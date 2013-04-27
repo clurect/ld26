@@ -8,7 +8,7 @@ module.exports = function (grunt) {
             options: {
                 jshintrc: "build/strict.jshintrc"
             },
-            public: {
+            js: {
                 src: ["js/**/*.js"]
             },
             misc: {
@@ -18,5 +18,4 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks("grunt-contrib-jshint");
-    grunt.loadNpmTasks("grunt-contrib-nodeunit");
 };
