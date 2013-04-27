@@ -1,4 +1,6 @@
 define(function() {
+    "use strict";
+
     function Game() {
         var CANVAS_WIDTH = 480 * 1.5;
         var CANVAS_HEIGHT = 320 * 1.5;

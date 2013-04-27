@@ -1,5 +1,7 @@
 function Loader(file)
 {
+    "use strict";
+
     this.file = file;
 	// if (typeof(_loader_prototype_called) == 'undefined')
 	// {
