@@ -1,9 +1,9 @@
-define(function() {
+define(["js/entities/player.js", "js/entities/morphyGuy.js", "js/entities/ground.js"], function(Player, MorphyGuy, Ground) {
     "use strict";
 
     function Game() {
-        var CANVAS_WIDTH = 480 * 1.5;
-        var CANVAS_HEIGHT = 320 * 1.5;
+        var CANVAS_WIDTH = 720;
+        var CANVAS_HEIGHT = 480;
         var keys = {};
         var player;
         var canvas;
@@ -14,10 +14,8 @@ define(function() {
         var morphyGuy;
         this.DrawInterval = 1000 / FPS;
         this.Initialize = function(where) {
-            console.log('init');
             sprites = new Image();
             //sprites.src = 'sprites.png';
-            //canvasElement = $("<canvas width='" + CANVAS_WIDTH + "' height='" + CANVAS_HEIGHT + "'></canvas>");
             canvasElement = document.createElement("canvas");
             canvasElement.id = "myCanvas";
             canvasElement.width = CANVAS_WIDTH;
@@ -26,80 +24,11 @@ define(function() {
             $(where).get(0).appendChild(canvasElement);
             this.canvasElement = canvasElement;
             //text = $.getJSON('textObject.json', function (json) { return json; });
-            ground = {
-                color: "#040",
-                width: CANVAS_WIDTH,
-                height: 32,
-                x: 0,
-                y: CANVAS_HEIGHT - 32,
-                draw: function() {
-                    canvas.fillStyle = this.color;
-
-                    canvas.fillRect(this.x, this.y, this.width, this.height);
-                }
-            };
-            player = {
-                game: this,
-                color: "#00A",
-                state: 'falling',
-                x: 220,
-                y: 270,
-                dx: 0,
-                dy: 0,
-                jumpHeight: 100,
-                jumpOrigin:0,
-                width: 32,
-                height: 32,
-                draw: function() {
-                    canvas.fillStyle = this.color;
-
-                    canvas.fillRect(this.x, this.y, this.width, this.height);
-                },
-                update: function() {}
-            };
-            morphyGuy = {
-                game: this,
-                color: "#00A",
-                colors: [{
-                    value: 5,
-                    increase: true
-                }, {
-                    value: 50,
-                    increase: true
-                }, {
-                    value: 125,
-                    increase: true
-                }],
-                colorIncrement: 3,
-                colorLimitHigh: 245,
-                colorLimitLow: 5,
-                x: 220,
-                y: 240,
-                width: 32,
-                height: 32,
-                draw: function() {
-                    canvas.fillStyle = this.color;
-
-                    canvas.fillRect(this.x, this.y, this.width, this.height);
-                },
-                update: function() {
-                    this.colors.forEach(function(item) {
-                        if (item.increase) item.value += this.colorIncrement;
-                        else item.value -= this.colorIncrement;
-
-                        if (item.value >= this.colorLimitHigh) //may need to subtract some more if we get a weird flash
-                        item.increase = false;
-                        else if (item.value <= this.colorLimitLow) //may need to add some more if we get a weird flash
-                        item.increase = true;
-                    }, this);
-
-                    this.color = "#" + this.colors.map(function(item) {
-                        var hexStr = item.value.toString(16);
-                        if (hexStr.length == 1) hexStr = "0" + hexStr;
-                        return hexStr;
-                    }).join("");
-                }
-            };
+            ground = new Ground();
+            ground.width = CANVAS_WIDTH;
+            ground.y = CANVAS_HEIGHT - 32;
+            player = new Player();
+            morphyGuy = new MorphyGuy();
             this.LoadContent();
         };
         this.LoadContent = function() {
@@ -113,6 +42,8 @@ define(function() {
         };
 
         this.Update = function() {
+            //player.update(keys);
+            morphyGuy.update(keys);
             if (keys[37]) player.x -= 5;
             if (keys[39]) player.x += 5;
             if (keys[38] && player.state !== 'falling' && player.state !== 'jumping') {
@@ -125,21 +56,19 @@ define(function() {
             if (player.jumpOrigin - player.jumpHeight >= player.y)
                 player.state = 'falling';
             if (player.y + player.height >= ground.y) {
-                player.y += 0;
                 player.state = '';
             }
             else {
                 player.y += 5; //gravity!
             }
-            morphyGuy.update();
         };
 
         this.Draw = function() {
             canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-            player.draw();
+            player.draw(canvas);
             
-            morphyGuy.draw();
-            ground.draw();
+            morphyGuy.draw(canvas);
+            ground.draw(canvas);
             canvas.fillStyle = "#000"; // Set color to black
 
         };
