@@ -14,10 +14,10 @@ define(function () {
         this.jumpHeight = 100;
         this.jumpOrigin = 0;
 
-        this.draw = function (canvas) {
+        this.draw = function (canvas, sprites) {
             canvas.fillStyle = color;
-
-            canvas.fillRect(this.x, this.y, width, height);
+			canvas.drawImage(sprites, 0, 0, 32, 32, this.x, this.y, width, height);
+			
         };
 
         this.update = function (/*keys*/) {
