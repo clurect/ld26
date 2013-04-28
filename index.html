@@ -4,7 +4,10 @@
     <head>
         <meta charset="utf-8">
         <title>Hello World</title>
-        <link rel="stylesheet" href="css/jqui-theme.css" />
+        <link rel="stylesheet" href="css/jqui/jquery.ui.core.min.css" />
+        <link rel="stylesheet" href="css/jqui/jquery.ui.theme.min.css" />
+        <link rel="stylesheet" href="css/jqui/jquery.ui.button.min.css" />
+        <link rel="stylesheet" href="css/jqui/jquery.ui.progressbar.min.css" />
         <script src="lib/lodash.min.js"></script>
         <script src="lib/jquery.js"></script>
         <script src="lib/jquery.ui.core.min.js"></script>
@@ -13,6 +16,7 @@
         <script src="lib/jquery.ui.mouse.min.js"></script>
         <script src="lib/jquery.ui.position.min.js"></script>
         <script src="lib/jquery.ui.button.min.js"></script>
+        <script src="lib/jquery.ui.progressbar.min.js"></script>
         <script data-main="js/main" src="lib/require.js"></script>
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -30,10 +34,10 @@
     
     <body>
         <div>
-            <!--<canvas id="myCanvas"></canvas> -->
             <br/>
             <button id="start-button" disabled="true">Start</button>
             <button id="stop-button" disabled="true">Stop</button>
+            <div id="progressbar" hidden="true"><div id="progresstext">Loading...</div></div>
             <div id="game"></div>
         </div>
     </body>

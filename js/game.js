@@ -16,8 +16,9 @@ define(["js/entities/player.js", "js/entities/sun.js", "js/entities/ground.js"],
             ground,
             sun;
 
-        this.Initialize = function (where) {
+        this.Initialize = function (where, changeProgressFunc) {
             sprites = new Image();
+            changeProgressFunc(30);
             sprites.src = "img/spritesheet.png";
             canvasElement = document.createElement("canvas");
             canvasElement.id = "myCanvas";
@@ -26,17 +27,22 @@ define(["js/entities/player.js", "js/entities/sun.js", "js/entities/ground.js"],
             canvas = canvasElement.getContext("2d");
             $(where).get(0).appendChild(canvasElement);
             this.canvasElement = canvasElement;
+            changeProgressFunc(50);
             //text = $.getJSON("textObject.json", function (json) { return json; });
             ground = new Ground();
             ground.width = CANVAS_WIDTH;
             ground.y = CANVAS_HEIGHT - 32;
+            changeProgressFunc(70);
             player = new Player();
+            changeProgressFunc(80);
             sun = new Sun();
             sun.width = Math.max(CANVAS_WIDTH, CANVAS_HEIGHT) * 0.1;
             sun.height = sun.width;
             sun.x = CANVAS_WIDTH * 0.8;
             sun.y = CANVAS_HEIGHT * 0.1;
+            changeProgressFunc(95);
             this.LoadContent();
+            changeProgressFunc(100);
             this.RunGameLoop();
         };
         this.LoadContent = function () {

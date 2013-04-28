@@ -6,6 +6,14 @@
     width: 200px;
 }
 
+#progresstext {
+    float: left;
+    margin-left: 45%;
+    margin-top: 5px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+}
+
 #myCanvas {
     border: 1px solid black;
 }
