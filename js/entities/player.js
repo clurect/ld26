@@ -5,6 +5,7 @@ define(function () {
         var LEFT = 0, RIGHT = 1;
 
         var color = "#00A",
+            sprites,
             width = 32,
             height = this.height = 32;
 
@@ -16,7 +17,12 @@ define(function () {
         this.jumpHeight = 100;
         this.facing = RIGHT;
 
-        this.draw = function (canvas, sprites) {
+        this.LoadContent = function () {
+            sprites = new Image();
+            sprites.src = "img/spritesheet.png";
+        };
+
+        this.Draw = function (canvas) {
             canvas.fillStyle = color;
 
             var scaleH = (this.facing === LEFT ? -1 : 1),
@@ -30,7 +36,7 @@ define(function () {
             canvas.restore();
         };
 
-        this.update = function (/*keys*/) {
+        this.Update = function (/*keys*/) {
             this.x += this.dx;
             this.y += this.dy;
 

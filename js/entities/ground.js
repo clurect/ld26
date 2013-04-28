@@ -8,7 +8,7 @@ define(function () {
 
         this.y = 0;
 
-        this.draw = function (canvas) {
+        this.Draw = function (canvas) {
             canvas.fillStyle = color;
 
             canvas.fillRect(x, this.y, this.width, height);//temp 'this'

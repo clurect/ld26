@@ -17,13 +17,13 @@ define(function () {
         this.width = 32;
         this.height = 32;
 
-        this.draw = function (canvas) {
+        this.Draw = function (canvas) {
             canvas.fillStyle = color;
 
             canvas.fillRect(this.x, this.y, this.width, this.height);
         };
 
-        this.update = function () {
+        this.Update = function () {
             colors.forEach(function (item) {
                 if (item.increase) {
                     item.value += colorIncrement;
