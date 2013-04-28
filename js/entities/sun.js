@@ -12,10 +12,10 @@ define(function () {
             colorIncrement = 3,
             colorLimitHigh = 245,
             colorLimitLow = 5;
-            this.x = 0;
-            this.y = 0;
-            this.width = 32;
-            this.height = 32;
+        this.x = 0;
+        this.y = 0;
+        this.width = 32;
+        this.height = 32;
 
         this.draw = function (canvas) {
             canvas.fillStyle = color;

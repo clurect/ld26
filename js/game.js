@@ -9,14 +9,13 @@ define(["js/entities/player.js", "js/entities/sun.js", "js/entities/ground.js"],
             GRAVITY = 0.20,
             INITIAL_JUMP = -3.5;
         var keys = {};
-        var player;
         var canvas;
         var canvasElement;
         var sprites;
         var player,
             ground,
             sun;
-            
+
         this.Initialize = function (where) {
             sprites = new Image();
             sprites.src = "img/spritesheet.png";
@@ -33,10 +32,10 @@ define(["js/entities/player.js", "js/entities/sun.js", "js/entities/ground.js"],
             ground.y = CANVAS_HEIGHT - 32;
             player = new Player();
             sun = new Sun();
-            sun.width = Math.max(CANVAS_WIDTH,CANVAS_HEIGHT)*.1;//CANVAS_WIDTH*.1;
+            sun.width = Math.max(CANVAS_WIDTH, CANVAS_HEIGHT) * 0.1;
             sun.height = sun.width;
-            sun.x = CANVAS_WIDTH * .8;
-            sun.y = CANVAS_HEIGHT * .1;
+            sun.x = CANVAS_WIDTH * 0.8;
+            sun.y = CANVAS_HEIGHT * 0.1;
             this.LoadContent();
             this.RunGameLoop();
         };
