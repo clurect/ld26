@@ -72,11 +72,15 @@ define(["js/entities/player.js",
             if (keys[38] && player.state !== "jumping") {
                 player.state = "jumping";
                 player.dy = INITIAL_JUMP;
-            } else if (player.y + player.height >= ground.y) {
+                player.jumpSound.play();
+            } else if (player.state === "jumping" &&
+                       player.y + player.height >= ground.y) {
                 player.y = ground.y - player.height;
                 player.dy = 0;
                 player.state = "grounded";
-            } else {
+                player.landSound.play();
+            }
+            if (player.state !== "grounded") {
                 player.dy += GRAVITY;
             }
 

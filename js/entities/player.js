@@ -19,6 +19,9 @@ define(function () {
         this.LoadContent = function () {
             sprites = new Image();
             sprites.src = "img/spritesheet.png";
+
+            this.jumpSound = new Audio("snd/jump.wav");
+            this.landSound = new Audio("snd/land.wav");
         };
 
         this.Draw = function (canvas) {
