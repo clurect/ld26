@@ -16,7 +16,7 @@ define(["js/entities/player.js", "js/entities/morphyGuy.js", "js/entities/ground
         this.DrawInterval = 1000 / FPS;
         this.Initialize = function (where) {
             sprites = new Image();
-            //sprites.src = "sprites.png";
+            sprites.src = "img/spritesheet.png";
             canvasElement = document.createElement("canvas");
             canvasElement.id = "myCanvas";
             canvasElement.width = CANVAS_WIDTH;
@@ -45,32 +45,41 @@ define(["js/entities/player.js", "js/entities/morphyGuy.js", "js/entities/ground
         this.Update = function () {
             //player.update(keys);
             morphyGuy.update(keys);
+			player.dx = 0;
+			player.dy = 0;
             if (keys[37]) {
-                player.x -= 5;
+                player.dx = -5;
+            } 			
+            else if (keys[39]) {
+                player.dx = 5;
             }
-            if (keys[39]) {
-                player.x += 5;
-            }
+			
             if (keys[38] && player.state !== "falling" && player.state !== "jumping") {
                 player.state = "jumping";
                 player.jumpOrigin = player.y + player.height;
             }
-            if (player.state === "jumping") {
-                player.y -= 10;
-            }
-            if (player.jumpOrigin - player.jumpHeight >= player.y) {
+            else if (player.jumpOrigin - player.jumpHeight >= player.y) {
                 player.state = "falling";
             }
-            if (player.y + player.height >= ground.y) {
-                player.state = "";
-            } else {
-                player.y += 5; //gravity!
+            else if (player.y + player.height >= ground.y) {
+                player.state = "grounded";
+            } 
+			if (player.state === "jumping") {
+				player.dy = -10;
             }
+			else if (player.state === "grounded") {
+				player.dy = 0;
+			}
+			else {
+                player.dy = 5; //gravity!
+            }
+			console.log(player.state);
+			player.update();
         };
 
         this.Draw = function () {
             canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-            player.draw(canvas);
+            player.draw(canvas, sprites);
 
             morphyGuy.draw(canvas);
             ground.draw(canvas);

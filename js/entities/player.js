@@ -7,6 +7,8 @@ define(function () {
             height = this.height = 32;
 
         this.state = "falling";
+		this.dx = 0;
+		this.dy = 0;
         this.x = 220;
         this.y = 270;
         this.jumpHeight = 100;
@@ -18,7 +20,10 @@ define(function () {
             canvas.fillRect(this.x, this.y, width, height);
         };
 
-        this.update = function (/*keys*/) {};
+        this.update = function (/*keys*/) {
+			this.x += this.dx;
+			this.y += this.dy;
+		};
     }
 
     return Player;
