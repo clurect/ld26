@@ -40,9 +40,9 @@ define(function () {
             this.x += this.dx;
             this.y += this.dy;
 
-            if (this.dx < 0) {
+            if (this.dx < 0 && this.state === "grounded") {
                 this.facing = LEFT;
-            } else if (this.dx > 0) {
+            } else if (this.dx > 0 && this.state === "grounded") {
                 this.facing = RIGHT;
             }
         };
