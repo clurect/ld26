@@ -3,6 +3,7 @@ define(["js/entities/player.js", "js/entities/morphyGuy.js", "js/entities/ground
     "use strict";
 
     function Game() {
+        this.running = true;
         var CANVAS_WIDTH = 720,
             CANVAS_HEIGHT = 480,
             GRAVITY = 0.20,
@@ -11,11 +12,9 @@ define(["js/entities/player.js", "js/entities/morphyGuy.js", "js/entities/ground
         var player;
         var canvas;
         var canvasElement;
-        var FPS = 30;
         var sprites;
         var ground;
         var morphyGuy;
-        this.DrawInterval = 1000 / FPS;
         this.Initialize = function (where) {
             sprites = new Image();
             sprites.src = "img/spritesheet.png";
@@ -33,6 +32,7 @@ define(["js/entities/player.js", "js/entities/morphyGuy.js", "js/entities/ground
             player = new Player();
             morphyGuy = new MorphyGuy();
             this.LoadContent();
+            this.RunGameLoop();
         };
         this.LoadContent = function () {
             // load content – graphics, sound etc.
@@ -42,6 +42,9 @@ define(["js/entities/player.js", "js/entities/morphyGuy.js", "js/entities/ground
         this.RunGameLoop = function () {
             this.Update();
             this.Draw();
+            if (this.running) {
+                window.requestAnimationFrame(_.bind(this.RunGameLoop, this));
+            }
         };
 
         this.Update = function () {
