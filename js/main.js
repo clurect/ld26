@@ -12,17 +12,17 @@ $(document).ready(function () {
     var progresstext = $("#progresstext");
     var progressbar = $("#progressbar");
     progressbar.progressbar({
-      value: false,
-      change: function() {
-        progresstext.text(progressbar.progressbar("value")+"%");
-      },
-      complete: function() {
-        progresstext.text("Complete!");
-        progressbar.hide();
-      }
+        value: false,
+        change: function () {
+            progresstext.text(progressbar.progressbar("value") + "%");
+        },
+        complete: function () {
+            progresstext.text("Complete!");
+            progressbar.hide();
+        }
     });
-    var changeProgressFunc = function(value) {
-      progressbar.progressbar("value", value);
+    var changeProgressFunc = function (value) {
+        progressbar.progressbar("value", value);
     };
 
     require(["js/game.js"], function (Game) {
