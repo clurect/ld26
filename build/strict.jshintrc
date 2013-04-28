@@ -59,6 +59,7 @@
         "define": true,
         "require": true,
         "$": true,
-        "jQuery": true
+        "jQuery": true,
+        "_": true
     }
 }
