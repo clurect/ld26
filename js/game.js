@@ -1,5 +1,5 @@
-define(["js/entities/player.js", "js/entities/morphyGuy.js", "js/entities/ground.js"],
-        function (Player, MorphyGuy, Ground) {
+define(["js/entities/player.js", "js/entities/sun.js", "js/entities/ground.js"],
+        function (Player, Sun, Ground) {
     "use strict";
 
     function Game() {
@@ -13,8 +13,10 @@ define(["js/entities/player.js", "js/entities/morphyGuy.js", "js/entities/ground
         var canvas;
         var canvasElement;
         var sprites;
-        var ground;
-        var morphyGuy;
+        var player,
+            ground,
+            sun;
+            
         this.Initialize = function (where) {
             sprites = new Image();
             sprites.src = "img/spritesheet.png";
@@ -30,7 +32,11 @@ define(["js/entities/player.js", "js/entities/morphyGuy.js", "js/entities/ground
             ground.width = CANVAS_WIDTH;
             ground.y = CANVAS_HEIGHT - 32;
             player = new Player();
-            morphyGuy = new MorphyGuy();
+            sun = new Sun();
+            sun.width = Math.max(CANVAS_WIDTH,CANVAS_HEIGHT)*.1;//CANVAS_WIDTH*.1;
+            sun.height = sun.width;
+            sun.x = CANVAS_WIDTH * .8;
+            sun.y = CANVAS_HEIGHT * .1;
             this.LoadContent();
             this.RunGameLoop();
         };
@@ -68,14 +74,14 @@ define(["js/entities/player.js", "js/entities/morphyGuy.js", "js/entities/ground
             }
 
             player.update();
-            morphyGuy.update(keys);
+            sun.update(keys);
         };
 
         this.Draw = function () {
             canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
             player.draw(canvas, sprites);
 
-            morphyGuy.draw(canvas);
+            sun.draw(canvas);
             ground.draw(canvas);
             canvas.fillStyle = "#000"; // Set color to black
 

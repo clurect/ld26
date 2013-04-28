@@ -1,7 +1,7 @@
 define(function () {
     "use strict";
 
-    function MorphyGuy() {
+    function Sun() {
 
         var color = "#00A",
             colors = [
@@ -11,16 +11,16 @@ define(function () {
             ],
             colorIncrement = 3,
             colorLimitHigh = 245,
-            colorLimitLow = 5,
-            x = 220,
-            y = 240,
-            width = 32,
-            height = 32;
+            colorLimitLow = 5;
+            this.x = 0;
+            this.y = 0;
+            this.width = 32;
+            this.height = 32;
 
         this.draw = function (canvas) {
             canvas.fillStyle = color;
 
-            canvas.fillRect(x, y, width, height);
+            canvas.fillRect(this.x, this.y, this.width, this.height);
         };
 
         this.update = function () {
@@ -50,5 +50,5 @@ define(function () {
         };
     }
 
-    return MorphyGuy;
+    return Sun;
 });
