@@ -45,17 +45,17 @@ define(["js/entities/player.js", "js/entities/morphyGuy.js", "js/entities/ground
         };
 
         this.Update = function () {
-			player.dx = 0;
+            player.dx = 0;
             if (keys[37]) {
                 player.dx = -5;
-            } 			
+            }
             if (keys[39]) {
                 player.dx = 5;
             }
-			
+
             if (keys[38] && player.state !== "jumping") {
                 player.state = "jumping";
-                player.dy = INITIAL_JUMP; 
+                player.dy = INITIAL_JUMP;
             } else if (player.y + player.height >= ground.y) {
                 player.y = ground.y - player.height;
                 player.dy = 0;
@@ -64,7 +64,7 @@ define(["js/entities/player.js", "js/entities/morphyGuy.js", "js/entities/ground
                 player.dy += GRAVITY;
             }
 
-			player.update();
+            player.update();
             morphyGuy.update(keys);
         };
 
@@ -78,7 +78,6 @@ define(["js/entities/player.js", "js/entities/morphyGuy.js", "js/entities/ground
 
         };
         $(document).keydown(function (e) {
-            //console.log(e.which);
             keys[e.which] = true;
         });
         $(document).keyup(function (e) {
