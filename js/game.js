@@ -3,8 +3,10 @@ define(["js/entities/player.js", "js/entities/morphyGuy.js", "js/entities/ground
     "use strict";
 
     function Game() {
-        var CANVAS_WIDTH = 720;
-        var CANVAS_HEIGHT = 480;
+        var CANVAS_WIDTH = 720,
+            CANVAS_HEIGHT = 480,
+            GRAVITY = 0.20,
+            INITIAL_JUMP = -3.5;
         var keys = {};
         var player;
         var canvas;
@@ -43,38 +45,27 @@ define(["js/entities/player.js", "js/entities/morphyGuy.js", "js/entities/ground
         };
 
         this.Update = function () {
-            //player.update(keys);
-            morphyGuy.update(keys);
 			player.dx = 0;
-			player.dy = 0;
             if (keys[37]) {
                 player.dx = -5;
             } 			
-            else if (keys[39]) {
+            if (keys[39]) {
                 player.dx = 5;
             }
 			
-            if (keys[38] && player.state !== "falling" && player.state !== "jumping") {
+            if (keys[38] && player.state !== "jumping") {
                 player.state = "jumping";
-                player.jumpOrigin = player.y + player.height;
-            }
-            else if (player.jumpOrigin - player.jumpHeight >= player.y) {
-                player.state = "falling";
-            }
-            else if (player.y + player.height >= ground.y) {
+                player.dy = INITIAL_JUMP; 
+            } else if (player.y + player.height >= ground.y) {
+                player.y = ground.y - player.height;
+                player.dy = 0;
                 player.state = "grounded";
-            } 
-			if (player.state === "jumping") {
-				player.dy = -10;
+            } else {
+                player.dy += GRAVITY;
             }
-			else if (player.state === "grounded") {
-				player.dy = 0;
-			}
-			else {
-                player.dy = 5; //gravity!
-            }
-			console.log(player.state);
+
 			player.update();
+            morphyGuy.update(keys);
         };
 
         this.Draw = function () {
