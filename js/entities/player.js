@@ -5,10 +5,9 @@ define(function () {
         var LEFT = 0, RIGHT = 1;
 
         var color = "#00A",
-            sprites,
-            width = 32,
-            height = this.height = 32;
-
+            sprites;
+        this.width = 32;
+        this.height = 32;
         this.state = "jumping";
         this.dx = 0;
         this.dy = 0;
@@ -26,13 +25,13 @@ define(function () {
             canvas.fillStyle = color;
 
             var scaleH = (this.facing === LEFT ? -1 : 1),
-                posX = (this.facing === LEFT ? -width : 0);
+                posX = (this.facing === LEFT ? -this.width : 0);
 
             canvas.save();
             canvas.translate(this.x, this.y);
             canvas.scale(scaleH, 1);
             canvas.drawImage(sprites, 0, 0, 32, 32,
-                    posX, 0, width, height);
+                    posX, 0, this.width, this.height);
             canvas.restore();
         };
 
