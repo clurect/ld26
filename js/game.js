@@ -7,6 +7,7 @@ define(["js/entities/player.js",
 
     function Game() {
         this.running = true;
+        this.muteSfx = false;
         var CANVAS_WIDTH = 720,
             CANVAS_HEIGHT = 480,
             GRAVITY = 0.20,
@@ -72,13 +73,13 @@ define(["js/entities/player.js",
             if (keys[38] && player.state !== "jumping") {
                 player.state = "jumping";
                 player.dy = INITIAL_JUMP;
-                player.jumpSound.play();
+                this.playSound(player.jumpSound);
             } else if (player.state === "jumping" &&
                        player.y + player.height >= ground.y) {
                 player.y = ground.y - player.height;
                 player.dy = 0;
                 player.state = "grounded";
-                player.landSound.play();
+                this.playSound(player.landSound);
             }
             if (player.state !== "grounded") {
                 player.dy += GRAVITY;
@@ -97,6 +98,11 @@ define(["js/entities/player.js",
             player.Draw(canvas);
             canvas.fillStyle = "#000"; // Set color to black
 
+        };
+        this.playSound = function (sound) {
+            if (!this.muteSfx) {
+                sound.play();
+            }
         };
         $(document).keydown(function (e) {
             keys[e.which] = true;

@@ -20,16 +20,6 @@
         <script data-main="js/main" src="lib/require.js"></script>
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" type="text/css" href="css/style.css">
-        <script>
-            $(function() {
-               $("input[type=submit], button").button().click(function(event) {
-                    event.preventDefault();
-                });
-
-            });
-        </script>
-        <style>
-</style>
     </head>
     
     <body>
@@ -37,6 +27,8 @@
             <br/>
             <button id="start-button" disabled="true">Start</button>
             <button id="stop-button" disabled="true">Stop</button>
+            <span class="spacer">|</span>
+            <button id="mute-sfx-button" disabled="true"></button>
             <div id="progressbar" hidden="true"><div id="progresstext">Loading...</div></div>
             <div id="game"></div>
         </div>

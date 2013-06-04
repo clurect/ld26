@@ -1,3 +1,5 @@
+var game;
+
 (function () {
     "use strict";
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
@@ -5,7 +7,17 @@
     window.requestAnimationFrame = requestAnimationFrame;
 })();
 
-var game;
+function toggleMuteSfx(enable) {
+    "use strict";
+    if (enable) {
+        game.muteSfx = false;
+        $("#mute-sfx-button").button().html("&#x266A;");
+    } else {
+        game.muteSfx = true;
+        $("#mute-sfx-button").button().html("X");
+    }
+}
+
 $(document).ready(function () {
     "use strict";
 
@@ -26,23 +38,34 @@ $(document).ready(function () {
     };
 
     require(["js/game.js"], function (Game) {
-        $("#start-button").button("enable");
-        $("#start-button").button().click(function (event) {
-            progressbar.show();
-            $(this).button("disable");
-            $("#stop-button").button("enable");
+        $("input[type=submit], button").button().click(function (event) {
             event.preventDefault();
+        });
+        $("#start-button").button("enable");
+        $("#start-button").button().click(function () {
+            $(this).button("disable");
+            progressbar.show();
             game = new Game();
             game.Initialize("#game", changeProgressFunc);
+
+            //Initialize the Mute button
+            toggleMuteSfx(true);
+
+            $("#stop-button").button("enable");
+            $("#mute-sfx-button").button("enable");
         });
-        $("#stop-button").button().click(function (event) {
-            event.preventDefault();
+        $("#mute-sfx-button").button().html("&#x266A;");
+        $("#stop-button").button().click(function () {
             $(this).button("disable");
+            $("#mute-sfx-button").button("disable");
             game.running = false;
             game.canvasElement.parentNode.removeChild(game.canvasElement);
             game.canvasElement = null;
             game = null;
             $("#start-button").button("enable");
+        });
+        $("#mute-sfx-button").button().click(function () {
+            toggleMuteSfx(game.muteSfx);
         });
     });
 });
